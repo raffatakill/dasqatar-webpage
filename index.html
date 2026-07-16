@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dar Al-Sahra Energy Services — Tubular Running, Perfected.</title>
+<meta name="description" content="Dar Al-Sahra Energy Services (DAS) delivers certified tubular running services, oilfield equipment rental, and drilling support across the Middle East. API Spec Q2 · ISO 9001:2015 · Est. 1994." />
+<link rel="icon" type="image/png" href="Logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg:      #faf7f0;
+    --bg-2:    #f3eee2;
+    --panel:   #ffffff;
+    --line:    rgba(28,26,22,.09);
+    --line-2:  rgba(28,26,22,.16);
+    --text:    #1c1a16;
+    --muted:   #6d675b;
+    --dim:     #9a9384;
+    --amber:   #ffa938;
+    --flame:   #ff7a1a;
+    --accent-ink: #b4530a;
+    --glow:    rgba(255,150,50,.14);
+    --maxw:    1240px;
+    --ease:    cubic-bezier(.22,1,.36,1);
+    --font-d:  "Space Grotesk", -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-b:  "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-b);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  a { color: inherit; text-decoration: none; }
+  img { display: block; max-width: 100%; }
+  section { position: relative; scroll-margin-top: 70px; }
+  ::selection { background: var(--flame); color: #fff; }
+
+  /* ---------- Film grain ---------- */
+  .grain {
+    position: fixed; inset: -50%; z-index: 200; pointer-events: none;
+    width: 200%; height: 200%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: .035;
+    animation: grain 8s steps(10) infinite;
+  }
+  @keyframes grain {
+    0%,100% { transform: translate(0,0); }
+    10% { transform: translate(-5%,-8%); } 30% { transform: translate(3%,-12%); }
+    50% { transform: translate(8%,4%); }  70% { transform: translate(-7%,9%); }
+    90% { transform: translate(4%,6%); }
+  }
+
+  /* ---------- Scroll progress ---------- */
+  .progress {
+    position: fixed; top: 0; left: 0; height: 2px; width: 0;
+    background: linear-gradient(90deg, var(--amber), var(--flame));
+    z-index: 120;
+  }
+
+  /* ---------- Nav ---------- */
+  .navbar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    transition: background .4s var(--ease), border-color .4s var(--ease);
+    border-bottom: 1px solid transparent;
+  }
+  .navbar.scrolled {
+    background: rgba(250,247,240,.8);
+    -webkit-backdrop-filter: blur(18px) saturate(160%);
+    backdrop-filter: blur(18px) saturate(160%);
+    border-bottom-color: var(--line);
+  }
+  .nav-inner {
+    max-width: var(--maxw); margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 68px; padding: 0 28px;
+  }
+  /* logo: white over the dark hero, original color once scrolled onto light bg */
+  .nav-logo img { height: 30px; filter: brightness(0) invert(1); opacity: .95; transition: filter .4s; }
+  .navbar.scrolled .nav-logo img { filter: none; }
+  .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+  .nav-links a {
+    font-size: 13px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase;
+    color: rgba(255,255,255,.82); transition: color .25s;
+    position: relative;
+  }
+  .navbar.scrolled .nav-links a { color: var(--muted); }
+  .nav-links a::after {
+    content: ''; position: absolute; left: 0; bottom: -6px; height: 1px; width: 0;
+    background: var(--amber); transition: width .3s var(--ease);
+  }
+  .nav-links a:hover { color: #fff; }
+  .navbar.scrolled .nav-links a:hover { color: var(--text); }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-cta {
+    font-size: 12px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+    color: #1c1a16; background: #fff;
+    padding: 11px 22px; border-radius: 2px;
+    transition: background .25s, color .25s, transform .25s var(--ease);
+  }
+  .navbar.scrolled .nav-cta { background: var(--text); color: var(--bg); }
+  .nav-cta:hover { background: var(--amber) !important; color: #16100a !important; transform: translateY(-1px); }
+  .burger { display: none; background: none; border: none; cursor: pointer; padding: 8px; z-index: 110; }
+  .burger span { display: block; width: 24px; height: 2px; background: #fff; margin: 5px 0; transition: .3s var(--ease); }
+  .navbar.scrolled .burger span, .burger.open span { background: var(--text); }
+  .burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .burger.open span:nth-child(2) { opacity: 0; }
+  .burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* ---------- Hero (stays cinematic dark over video) ---------- */
+  .hero {
+    height: 100svh; min-height: 640px;
+    display: flex; align-items: flex-end;
+    overflow: hidden;
+    background: #0a0a0b;
+  }
+  .hero-media { position: absolute; inset: 0; z-index: 0; }
+  .hero-media video {
+    width: 100%; height: 115%; object-fit: cover;
+    will-change: transform;
+  }
+  .hero::after {
+    content: ''; position: absolute; inset: 0; z-index: 1;
+    background:
+      linear-gradient(180deg, rgba(10,10,11,.55) 0%, rgba(10,10,11,.15) 40%, rgba(10,10,11,.88) 100%);
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    width: 100%; max-width: var(--maxw); margin: 0 auto;
+    padding: 0 28px 9vh;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 12px;
+    font-size: 12px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase;
+    color: var(--amber); margin-bottom: 26px;
+  }
+  .hero-eyebrow::before { content: ''; width: 40px; height: 1px; background: var(--amber); }
+  .hero h1 {
+    font-family: var(--font-d);
+    font-size: clamp(46px, 8.4vw, 118px);
+    font-weight: 600; line-height: .98; letter-spacing: -0.03em;
+    text-wrap: balance;
+    color: #fff;
+  }
+  .hero h1 .line { display: block; overflow: hidden; }
+  .hero h1 .line span {
+    display: block; transform: translateY(110%);
+    animation: rise 1.1s var(--ease) forwards;
+  }
+  .hero h1 .line:nth-child(2) span { animation-delay: .12s; }
+  .hero h1 .accent {
+    background: linear-gradient(92deg, var(--amber), var(--flame));
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent;
+  }
+  @keyframes rise { to { transform: translateY(0); } }
+  .hero-sub {
+    max-width: 560px; margin-top: 28px;
+    font-size: clamp(16px, 1.6vw, 19px); color: rgba(242,241,236,.82); line-height: 1.55;
+    opacity: 0; animation: fadeup 1s var(--ease) .5s forwards;
+  }
+  .hero-row {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    gap: 40px; flex-wrap: wrap;
+  }
+  .hero-actions { display: flex; gap: 16px; margin-top: 36px; opacity: 0; animation: fadeup 1s var(--ease) .7s forwards; }
+  @keyframes fadeup { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 13px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+    padding: 16px 30px; border-radius: 2px; cursor: pointer;
+    transition: transform .3s var(--ease), background .3s, color .3s, border-color .3s;
+    border: 1px solid transparent; font-family: var(--font-b);
+  }
+  .btn-solid { background: linear-gradient(92deg, var(--amber), var(--flame)); color: #16100a; }
+  .btn-solid:hover { transform: translateY(-2px); filter: brightness(1.08); }
+  /* ghost buttons only appear on dark photo sections (hero, HSE) */
+  .btn-ghost { border-color: rgba(255,255,255,.35); color: #fff; background: rgba(255,255,255,.06); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+  .btn-ghost:hover { border-color: var(--amber); color: var(--amber); transform: translateY(-2px); }
+  .scroll-cue {
+    position: absolute; bottom: 34px; right: 40px; z-index: 3;
+    display: flex; flex-direction: column; align-items: center; gap: 10px;
+    color: rgba(255,255,255,.65); font-size: 10px; letter-spacing: .3em; text-transform: uppercase;
+    writing-mode: vertical-rl;
+    opacity: 0; animation: fadeup 1s var(--ease) 1.1s forwards;
+  }
+  .scroll-cue::after {
+    content: ''; width: 1px; height: 56px;
+    background: linear-gradient(180deg, var(--amber), transparent);
+    animation: cue 2s var(--ease) infinite;
+  }
+  @keyframes cue { 0% { transform: scaleY(0); transform-origin: top; } 50% { transform: scaleY(1); transform-origin: top; } 51% { transform-origin: bottom; } 100% { transform: scaleY(0); transform-origin: bottom; } }
+
+  /* ---------- Marquee ---------- */
+  .marquee {
+    border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+    background: var(--bg-2);
+    overflow: hidden; padding: 22px 0;
+  }
+  .marquee-track {
+    display: flex; gap: 0; width: max-content;
+    animation: marquee 30s linear infinite;
+  }
+  .marquee-track span {
+    font-family: var(--font-d); font-size: 15px; font-weight: 500;
+    letter-spacing: .22em; text-transform: uppercase; color: var(--dim);
+    padding: 0 34px; white-space: nowrap; display: inline-flex; align-items: center; gap: 34px;
+  }
+  .marquee-track span::after { content: '✦'; color: var(--flame); font-size: 11px; }
+  @keyframes marquee { to { transform: translateX(-50%); } }
+
+  /* ---------- Section scaffolding ---------- */
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
+  .sec-head { margin-bottom: 72px; }
+  .kicker {
+    display: inline-flex; align-items: center; gap: 12px;
+    font-size: 12px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase;
+    color: var(--accent-ink); margin-bottom: 20px;
+  }
+  .kicker::before { content: ''; width: 36px; height: 1px; background: var(--accent-ink); }
+  h2 {
+    font-family: var(--font-d);
+    font-size: clamp(34px, 4.6vw, 64px);
+    font-weight: 600; line-height: 1.04; letter-spacing: -0.025em;
+    text-wrap: balance;
+  }
+  .lead { color: var(--muted); font-size: clamp(16px, 1.5vw, 19px); max-width: 620px; margin-top: 20px; }
+
+  /* ---------- Services ---------- */
+  .services { padding: 140px 0 60px; }
+  .svc-list { border-top: 1px solid var(--line); counter-reset: svc; }
+  .svc {
+    display: grid; grid-template-columns: 90px 1fr 1.1fr 48px;
+    gap: 32px; align-items: center;
+    padding: 44px 8px;
+    border-bottom: 1px solid var(--line);
+    position: relative; cursor: pointer;
+    transition: background .35s var(--ease), padding .35s var(--ease);
+  }
+  .svc:hover { background: rgba(28,26,22,.03); padding-left: 20px; }
+  .svc .num {
+    font-family: var(--font-d); font-size: 15px; color: var(--dim);
+    letter-spacing: .1em;
+  }
+  .svc:hover .num { color: var(--accent-ink); }
+  .svc h3 {
+    font-family: var(--font-d); font-size: clamp(24px, 2.6vw, 36px);
+    font-weight: 600; letter-spacing: -0.02em; line-height: 1.1;
+    transition: color .3s;
+  }
+  .svc p { color: var(--muted); font-size: 15px; max-width: 480px; }
+  .svc .arrow {
+    width: 44px; height: 44px; border: 1px solid var(--line-2); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--muted); font-size: 18px;
+    transition: all .35s var(--ease);
+  }
+  .svc:hover .arrow { background: linear-gradient(92deg, var(--amber), var(--flame)); border-color: transparent; color: #16100a; transform: rotate(-45deg); }
+  .svc-img {
+    position: fixed; z-index: 90; pointer-events: none;
+    width: 300px; height: 380px; border-radius: 4px; overflow: hidden;
+    opacity: 0; transform: scale(.9) rotate(2deg);
+    transition: opacity .3s var(--ease), transform .4s var(--ease);
+    box-shadow: 0 30px 80px rgba(28,26,22,.28);
+  }
+  .svc-img.show { opacity: 1; transform: scale(1) rotate(0deg); }
+  .svc-img img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; opacity: 0; transition: opacity .25s; }
+  .svc-img img.active { opacity: 1; }
+
+  /* mobile service cards */
+  .svc-media-inline { display: none; }
+
+  /* ---------- Story (scroll word reveal) ---------- */
+  .story { padding: 170px 0; }
+  .story .statement {
+    font-family: var(--font-d);
+    font-size: clamp(28px, 3.8vw, 54px);
+    font-weight: 500; line-height: 1.25; letter-spacing: -0.02em;
+    max-width: 1000px;
+  }
+  .story .statement .w { color: rgba(28,26,22,.16); transition: color .35s linear; }
+  .story .statement .w.lit { color: var(--text); }
+  .story .statement .w.hl.lit { color: var(--accent-ink); }
+  .story .creds {
+    display: flex; gap: 48px; flex-wrap: wrap; margin-top: 64px;
+    color: var(--dim); font-size: 12px; font-weight: 600;
+    letter-spacing: .2em; text-transform: uppercase;
+  }
+  .story .creds div { display: flex; align-items: center; gap: 12px; }
+  .story .creds div::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--flame); box-shadow: 0 0 12px var(--flame); }
+
+  /* ---------- Stats ---------- */
+  .stats { padding: 40px 0 140px; }
+  .stats-panel {
+    border: 1px solid var(--line); border-radius: 8px;
+    background:
+      radial-gradient(1200px 400px at 20% 0%, var(--glow), transparent 60%),
+      var(--panel);
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(28,26,22,.06);
+  }
+  .stat {
+    padding: 56px 40px; text-align: left;
+    border-left: 1px solid var(--line);
+  }
+  .stat:first-child { border-left: none; }
+  .stat .num {
+    font-family: var(--font-d);
+    font-size: clamp(48px, 5vw, 76px); font-weight: 600; line-height: 1;
+    letter-spacing: -0.04em;
+    background: linear-gradient(180deg, #1c1a16, #5a544a);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .stat .num .suffix { color: var(--accent-ink); -webkit-text-fill-color: var(--accent-ink); }
+  .stat .label { margin-top: 14px; color: var(--muted); font-size: 13px; letter-spacing: .08em; text-transform: uppercase; }
+
+  /* ---------- Why ---------- */
+  .why { padding: 60px 0 150px; }
+  .why-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .why-card {
+    border: 1px solid var(--line); border-radius: 8px;
+    background: var(--panel);
+    padding: 40px 30px;
+    position: relative; overflow: hidden;
+    transition: transform .4s var(--ease), border-color .4s, box-shadow .4s;
+  }
+  .why-card::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(400px 200px at var(--mx,50%) var(--my,0%), var(--glow), transparent 70%);
+    opacity: 0; transition: opacity .4s;
+  }
+  .why-card:hover { transform: translateY(-6px); border-color: var(--line-2); box-shadow: 0 24px 50px rgba(28,26,22,.08); }
+  .why-card:hover::before { opacity: 1; }
+  .why-card .ic {
+    width: 46px; height: 46px; margin-bottom: 26px;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid var(--line-2); border-radius: 8px;
+    color: var(--accent-ink); position: relative;
+  }
+  .why-card .ic svg { width: 24px; height: 24px; }
+  .why-card h4 { font-family: var(--font-d); font-size: 20px; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 10px; position: relative; }
+  .why-card p { color: var(--muted); font-size: 14px; line-height: 1.6; position: relative; }
+
+  /* ---------- HSE parallax band (stays cinematic dark over photo) ---------- */
+  .hse {
+    min-height: 92vh;
+    display: flex; align-items: center;
+    overflow: hidden;
+    background: #0a0a0b;
+  }
+  .hse .bg {
+    position: absolute; inset: -12% 0; z-index: 0;
+    background: url('4.jpg') center/cover no-repeat;
+    will-change: transform;
+  }
+  .hse::after {
+    content: ''; position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(90deg, rgba(10,10,11,.92) 0%, rgba(10,10,11,.55) 55%, rgba(10,10,11,.25) 100%);
+  }
+  .hse .wrap { position: relative; z-index: 2; width: 100%; padding-top: 120px; padding-bottom: 120px; }
+  .hse .kicker { color: var(--amber); }
+  .hse .kicker::before { background: var(--amber); }
+  .hse h2 { max-width: 640px; color: #fff; }
+  .hse .lead { max-width: 540px; color: rgba(242,241,236,.8); }
+  .hse-points { display: flex; gap: 44px; flex-wrap: wrap; margin-top: 52px; }
+  .hse-points div { max-width: 220px; }
+  .hse-points b {
+    display: block; font-family: var(--font-d); font-size: 16px; font-weight: 600;
+    margin-bottom: 6px; color: #fff;
+  }
+  .hse-points b::before { content: '— '; color: var(--amber); }
+  .hse-points span { color: rgba(242,241,236,.65); font-size: 13.5px; line-height: 1.55; }
+
+  /* ---------- Path quote ---------- */
+  .path { padding: 170px 0; background: var(--bg-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .path .wrap { max-width: 980px; text-align: center; }
+  .path blockquote {
+    font-family: var(--font-d);
+    font-size: clamp(24px, 3vw, 42px); font-weight: 500;
+    line-height: 1.3; letter-spacing: -0.02em; text-wrap: balance;
+  }
+  .path blockquote em { font-style: normal; color: var(--accent-ink); }
+  .path .attr { margin-top: 36px; color: var(--dim); font-size: 12px; letter-spacing: .22em; text-transform: uppercase; }
+
+  /* ---------- Contact ---------- */
+  .contact { padding: 150px 0; }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 80px; align-items: start; }
+  .ci-rows { display: grid; gap: 8px; margin-top: 48px; }
+  .ci-row {
+    display: flex; justify-content: space-between; align-items: baseline; gap: 20px;
+    padding: 22px 0; border-bottom: 1px solid var(--line);
+  }
+  .ci-row h5 { font-size: 11px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--dim); }
+  .ci-row p, .ci-row a { font-size: 16px; color: var(--text); text-align: right; line-height: 1.5; }
+  .ci-row a:hover { color: var(--accent-ink); }
+  form.cf {
+    border: 1px solid var(--line); border-radius: 8px;
+    background: var(--panel); padding: 44px;
+    box-shadow: 0 20px 60px rgba(28,26,22,.06);
+  }
+  .cf .frow { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .cf .field { margin-bottom: 18px; }
+  .cf label {
+    display: block; font-size: 11px; font-weight: 600;
+    letter-spacing: .18em; text-transform: uppercase;
+    color: var(--dim); margin-bottom: 8px;
+  }
+  .cf input, .cf select, .cf textarea {
+    width: 100%; font-family: var(--font-b); font-size: 15px;
+    padding: 14px 16px; background: var(--bg);
+    border: 1px solid var(--line-2); border-radius: 4px;
+    color: var(--text); transition: border-color .25s, box-shadow .25s, background .25s;
+  }
+  .cf select option { background: #fff; }
+  .cf input:focus, .cf select:focus, .cf textarea:focus {
+    outline: none; border-color: var(--flame);
+    box-shadow: 0 0 0 4px rgba(255,122,26,.14);
+    background: #fff;
+  }
+  .cf textarea { resize: vertical; min-height: 120px; }
+  .cf .btn { width: 100%; justify-content: center; margin-top: 6px; }
+
+  /* ---------- Footer ---------- */
+  footer { border-top: 1px solid var(--line); background: var(--bg-2); }
+  .foot-inner { max-width: var(--maxw); margin: 0 auto; padding: 72px 28px 32px; }
+  .foot-top { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 56px; }
+  .foot-top .brand img { height: 30px; opacity: .95; margin-bottom: 18px; }
+  .foot-top .brand p { color: var(--muted); font-size: 13.5px; max-width: 300px; line-height: 1.65; }
+  .foot-top h6 { font-size: 11px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--dim); margin-bottom: 18px; }
+  .foot-top ul { list-style: none; }
+  .foot-top ul li { margin-bottom: 12px; }
+  .foot-top ul a, .foot-top ul li { color: var(--muted); font-size: 14px; transition: color .25s; }
+  .foot-top ul a:hover { color: var(--accent-ink); }
+  .foot-bottom {
+    border-top: 1px solid var(--line); padding-top: 26px;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+    color: var(--dim); font-size: 12px; letter-spacing: .04em;
+  }
+  .foot-credit { text-align: center; flex: 1; min-width: 240px; }
+
+  /* ---------- Reveal ---------- */
+  .reveal { opacity: 0; transform: translateY(36px); transition: opacity 1s var(--ease), transform 1s var(--ease); }
+  .reveal.show { opacity: 1; transform: none; }
+  .reveal.d1 { transition-delay: .1s; } .reveal.d2 { transition-delay: .2s; } .reveal.d3 { transition-delay: .3s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: .01s !important; transition-duration: .01s !important; }
+    html { scroll-behavior: auto; }
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 980px) {
+    .nav-links, .nav-cta { display: none; }
+    .burger { display: block; }
+    .nav-links.open {
+      display: flex; flex-direction: column; align-items: flex-start; gap: 0;
+      position: fixed; inset: 0; padding: 110px 32px 40px;
+      background: rgba(250,247,240,.97);
+      -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px);
+    }
+    .nav-links.open li { width: 100%; border-bottom: 1px solid var(--line); }
+    .nav-links.open a, .navbar .nav-links.open a { display: block; padding: 20px 0; font-size: 20px; letter-spacing: .06em; color: var(--text); }
+    .svc { grid-template-columns: 48px 1fr 48px; grid-template-rows: auto auto; }
+    .svc h3 { grid-column: 2; }
+    .svc p { grid-column: 2; grid-row: 2; }
+    .svc .arrow { grid-row: 1; }
+    .svc-img { display: none; }
+    .svc-media-inline { display: block; grid-column: 1 / -1; grid-row: 3; border-radius: 6px; overflow: hidden; aspect-ratio: 16/9; }
+    .svc-media-inline img { width: 100%; height: 100%; object-fit: cover; }
+    .stats-panel { grid-template-columns: 1fr 1fr; }
+    .stat { border-top: 1px solid var(--line); }
+    .stat:nth-child(odd) { border-left: none; }
+    .stat:nth-child(-n+2) { border-top: none; }
+    .why-grid { grid-template-columns: 1fr 1fr; }
+    .contact-grid { grid-template-columns: 1fr; gap: 56px; }
+    .foot-top { grid-template-columns: 1fr 1fr; }
+    .scroll-cue { display: none; }
+  }
+  @media (max-width: 560px) {
+    .services, .story, .why, .contact, .path { padding-top: 90px; padding-bottom: 90px; }
+    .stats { padding-bottom: 90px; }
+    .stats-panel { grid-template-columns: 1fr; }
+    .stat { border-left: none !important; padding: 36px 30px; }
+    .stat:first-child { border-top: none; }
+    .why-grid { grid-template-columns: 1fr; }
+    .cf .frow { grid-template-columns: 1fr; }
+    form.cf { padding: 30px 22px; }
+    .foot-top { grid-template-columns: 1fr; }
+    .hero-actions { flex-direction: column; align-items: stretch; }
+    .btn { justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<!-- ===== Nav ===== -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a class="nav-logo" href="#top" aria-label="Dar Al-Sahra Energy Services"><img src="Logo.png" alt="DAS" /></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#story">Story</a></li>
+      <li><a href="#why">Why DAS</a></li>
+      <li><a href="#hse">HSE</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Start a project</a>
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- ===== Hero ===== -->
+<header class="hero" id="top">
+  <div class="hero-media">
+    <video id="heroVideo" src="44.mp4" autoplay muted loop playsinline preload="auto" poster="4.jpg" aria-label="DAS rig operations"></video>
+  </div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Dar Al-Sahra Energy Services · Qatar</div>
+    <div class="hero-row">
+      <div>
+        <h1>
+          <span class="line"><span>Tubular running,</span></span>
+          <span class="line"><span class="accent">perfected.</span></span>
+        </h1>
+        <p class="hero-sub">Certified equipment. Competency-assured crews. A safety culture measured in decades — delivered as one service across the Middle East since 1994.</p>
+        <div class="hero-actions">
+          <a class="btn btn-solid" href="#services">Explore services</a>
+          <a class="btn btn-ghost" href="#contact">Talk to operations</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-cue">Scroll</div>
+</header>
+
+<!-- ===== Marquee ===== -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track" id="marqueeTrack">
+    <span>API Spec Q2 Certified</span>
+    <span>ISO 9001:2015</span>
+    <span>Established 1994</span>
+    <span>24/7 Field Operations</span>
+    <span>500+ Wells Supported</span>
+    <span>First Q2-Certified Local Company</span>
+  </div>
+</div>
+
+<!-- ===== Services ===== -->
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker">What we do</div>
+      <h2>Four service lines.<br/>One standard: flawless.</h2>
+      <p class="lead">Engineered to support every phase of well construction — from the first joint to total depth.</p>
+    </div>
+    <div class="svc-list">
+
+      <article class="svc reveal" data-img="0">
+        <div class="num">01</div>
+        <h3>Tubular Running Services</h3>
+        <p>Certified power tongs, elevators, spiders, and computerized torque monitoring — verified connection integrity on every joint.</p>
+        <div class="arrow">→</div>
+        <div class="svc-media-inline"><img src="3.jpeg" alt="DAS crew performing tubular running on rig" loading="lazy" /></div>
+      </article>
+
+      <article class="svc reveal" data-img="1">
+        <div class="num">02</div>
+        <h3>Equipment Rental &amp; Supply</h3>
+        <p>An inspected, certified fleet of handling tools — staged, maintained, and mobilized on demand.</p>
+        <div class="arrow">→</div>
+        <div class="svc-media-inline"><img src="2.png" alt="DAS facility and equipment fleet" loading="lazy" /></div>
+      </article>
+
+      <article class="svc reveal" data-img="2">
+        <div class="num">03</div>
+        <h3>Drilling Support &amp; Rig Services</h3>
+        <p>Rig-ready crews that integrate into your program from day one — and cut non-productive time out of it.</p>
+        <div class="arrow">→</div>
+        <div class="svc-media-inline"><img src="1.jpg" alt="DAS field crew on site" loading="lazy" /></div>
+      </article>
+
+      <article class="svc reveal" data-img="3">
+        <div class="num">04</div>
+        <h3>CRT — Casing Drive System™</h3>
+        <p>Grip, rotate, reciprocate, and circulate directly from the top drive — with personnel out of the red zone.</p>
+        <div class="arrow">→</div>
+        <div class="svc-media-inline"><img src="crt.jpg" alt="Casing Drive System CRT tool on rig" loading="lazy" /></div>
+      </article>
+
+    </div>
+  </div>
+
+  <!-- floating hover preview (desktop) -->
+  <div class="svc-img" id="svcImg" aria-hidden="true">
+    <img src="3.jpeg" alt="" />
+    <img src="2.png" alt="" />
+    <img src="1.jpg" alt="" />
+    <img src="crt.jpg" alt="" />
+  </div>
+</section>
+
+<!-- ===== Story ===== -->
+<section class="story" id="story">
+  <div class="wrap">
+    <div class="kicker reveal">Our story</div>
+    <p class="statement" id="statement">Since 1994, Dar Al-Sahra has run tubulars in the Middle East's most demanding fields — becoming the <em>first local company</em> to earn <em>API Spec Q2</em> certification. Three decades on, we hold ourselves to that standard on every well, every day.</p>
+    <div class="creds reveal">
+      <div>Est. 1994</div>
+      <div>API Spec Q2 Certified</div>
+      <div>ISO 9001:2015</div>
+      <div>Owned by Mohammed Saif Al Khamisi</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Stats ===== -->
+<section class="stats">
+  <div class="wrap">
+    <div class="stats-panel reveal">
+      <div class="stat"><div class="num"><span class="count" data-target="30">0</span><span class="suffix">+</span></div><div class="label">Years in the industry</div></div>
+      <div class="stat"><div class="num"><span class="count" data-target="500">0</span><span class="suffix">+</span></div><div class="label">Wells supported</div></div>
+      <div class="stat"><div class="num">24<span class="suffix">/7</span></div><div class="label">Field operations</div></div>
+      <div class="stat"><div class="num">Q<span class="suffix">2</span></div><div class="label">API certified — first local company</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Why DAS ===== -->
+<section class="why" id="why">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker">Why operators choose DAS</div>
+      <h2>Dependable execution.<br/>Disciplined safety.</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.6 9-8 10-4.4-1-8-5-8-10V6z"/><path d="M8.5 12l2.3 2.3L15.5 9.5"/></svg></div>
+        <h4>Safety first</h4>
+        <p>A disciplined HSE culture built into every job plan, every toolbox talk, every field operation.</p>
+      </div>
+      <div class="why-card reveal d1">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12l3.2 3.2L16 9"/></svg></div>
+        <h4>Certified equipment</h4>
+        <p>A maintained, inspected fleet certified to recognized industry standards — no exceptions.</p>
+      </div>
+      <div class="why-card reveal d2">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2.5"/></svg></div>
+        <h4>24/7 availability</h4>
+        <p>Round-the-clock mobilization and field response, whenever your operation calls.</p>
+      </div>
+      <div class="why-card reveal d3">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><circle cx="16.5" cy="9.5" r="2.5"/><path d="M3 19c0-3 2.8-5 6-5s6 2 6 5M16 19c0-2 1.8-3.5 4-3.5"/></svg></div>
+        <h4>Experienced crews</h4>
+        <p>Competency-assured personnel with deep regional field experience, well after well.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== HSE ===== -->
+<section class="hse" id="hse">
+  <div class="bg" id="hseBg"></div>
+  <div class="wrap">
+    <div class="reveal">
+      <div class="kicker">Health · Safety · Environment</div>
+      <h2>Everyone home safe. Every day.</h2>
+      <p class="lead">Safety isn't a department at DAS — it's how we work.</p>
+      <div class="hse-points">
+        <div><b>Assessed</b><span>Every operation begins with a documented risk assessment.</span></div>
+        <div><b>Assured</b><span>Every crew member is competency-assured before stepping on site.</span></div>
+        <div><b>Inspected</b><span>Every piece of equipment is verified before it reaches the well.</span></div>
+      </div>
+      <div class="hero-actions" style="animation: none; opacity: 1; margin-top: 48px;">
+        <a class="btn btn-ghost" href="#contact">Our HSE commitment</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Path ===== -->
+<section class="path">
+  <div class="wrap reveal">
+    <blockquote>“We navigate the evolving energy landscape by integrating advanced technology with disciplined execution — delivering complex projects with <em>greater efficiency</em> and <em>lower emissions</em>.”</blockquote>
+    <div class="attr">Defining our path — Dar Al-Sahra Energy Services</div>
+  </div>
+</section>
+
+<!-- ===== Contact ===== -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="reveal">
+        <div class="kicker">Contact</div>
+        <h2>Let's talk about your well program.</h2>
+        <p class="lead">Tell us what you're drilling. We'll respond promptly with the right service and equipment solution.</p>
+        <div class="ci-rows">
+          <div class="ci-row"><h5>Phone</h5><a href="tel:+97477740909">+974 7774 0909</a></div>
+          <div class="ci-row"><h5>Email</h5><a href="mailto:trscm@dasqatar.com">trscm@dasqatar.com</a></div>
+          <div class="ci-row"><h5>Office</h5><p>Building No. 33, Street No. 3101,<br/>Al Wakrah, Doha, State of Qatar</p></div>
+          <div class="ci-row"><h5>Hours</h5><p>Field operations 24/7<br/>Office: Sun–Thu, 8:00–17:00</p></div>
+        </div>
+      </div>
+      <form class="cf reveal d1" action="mailto:trscm@dasqatar.com" method="post" enctype="text/plain">
+        <div class="frow">
+          <div class="field"><label for="fn">First name</label><input id="fn" name="First Name" type="text" required /></div>
+          <div class="field"><label for="ln">Last name</label><input id="ln" name="Last Name" type="text" required /></div>
+        </div>
+        <div class="frow">
+          <div class="field"><label for="em">Email</label><input id="em" name="Email" type="email" required /></div>
+          <div class="field"><label for="ph">Phone</label><input id="ph" name="Phone" type="tel" /></div>
+        </div>
+        <div class="field"><label for="co">Company</label><input id="co" name="Company" type="text" /></div>
+        <div class="field">
+          <label for="in">Area of interest</label>
+          <select id="in" name="Area of Interest">
+            <option>Tubular Running Services</option>
+            <option>Equipment Rental &amp; Supply</option>
+            <option>Drilling Support &amp; Rig Services</option>
+            <option>CRT — Casing Drive System</option>
+            <option>General enquiry</option>
+            <option>Careers</option>
+          </select>
+        </div>
+        <div class="field"><label for="ms">Message</label><textarea id="ms" name="Message" placeholder="Tell us about your project…"></textarea></div>
+        <button type="submit" class="btn btn-solid">Send enquiry →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer>
+  <div class="foot-inner">
+    <div class="foot-top">
+      <div class="brand">
+        <img src="Logo.png" alt="DAS" />
+        <p>Dar Al-Sahra Energy Services provides tubular running services, oilfield equipment rental, and drilling support across the Middle East. Trademarks referenced are the property of their respective owners.</p>
+      </div>
+      <div>
+        <h6>Services</h6>
+        <ul>
+          <li><a href="#services">Tubular Running</a></li>
+          <li><a href="#services">Equipment Rental &amp; Supply</a></li>
+          <li><a href="#services">Drilling Support</a></li>
+          <li><a href="#services">CRT Technology</a></li>
+        </ul>
+      </div>
+      <div>
+        <h6>Company</h6>
+        <ul>
+          <li><a href="#story">Our Story</a></li>
+          <li><a href="#why">Why DAS</a></li>
+          <li><a href="#hse">HSE</a></li>
+          <li><a href="#contact">Careers</a></li>
+        </ul>
+      </div>
+      <div>
+        <h6>Contact</h6>
+        <ul>
+          <li><a href="tel:+97477740909">+974 7774 0909</a></li>
+          <li><a href="mailto:trscm@dasqatar.com">trscm@dasqatar.com</a></li>
+          <li>Building No. 33, Street No. 3101,<br/>Al Wakrah, Doha, Qatar</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div>© <span id="year"></span> Dar Al-Sahra Energy Services. All rights reserved.</div>
+      <div class="foot-credit">Designed and Maintained by Raffat Akill</div>
+      <div>Health · Safety · Environment · Quality</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Year */
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  /* Nav state + scroll progress */
+  var navbar = document.getElementById('navbar');
+  var progress = document.getElementById('progress');
+  var heroVideo = document.getElementById('heroVideo');
+  var hseBg = document.getElementById('hseBg');
+  var hse = document.getElementById('hse');
+  var ticking = false;
+
+  function onScroll() {
+    var y = window.scrollY;
+    navbar.classList.toggle('scrolled', y > 40);
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    progress.style.width = (h > 0 ? (y / h) * 100 : 0) + '%';
+    if (!reduceMotion) {
+      /* hero parallax */
+      if (heroVideo && y < window.innerHeight * 1.2) {
+        heroVideo.style.transform = 'translateY(' + (y * 0.25) + 'px)';
+      }
+      /* HSE parallax */
+      if (hseBg && hse) {
+        var r = hse.getBoundingClientRect();
+        if (r.top < window.innerHeight && r.bottom > 0) {
+          var p = (r.top - window.innerHeight) / (r.height + window.innerHeight);
+          hseBg.style.transform = 'translateY(' + (p * 80 + 40) + 'px)';
+        }
+      }
+      /* story word reveal */
+      revealWords();
+    }
+    ticking = false;
+  }
+  window.addEventListener('scroll', function () {
+    if (!ticking) { requestAnimationFrame(onScroll); ticking = true; }
+  }, { passive: true });
+
+  /* Mobile menu */
+  var burger = document.getElementById('burger');
+  var navLinks = document.getElementById('navLinks');
+  burger.addEventListener('click', function () {
+    var open = navLinks.classList.toggle('open');
+    burger.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  navLinks.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      navLinks.classList.remove('open');
+      burger.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+
+  /* Marquee: duplicate track for seamless loop */
+  var track = document.getElementById('marqueeTrack');
+  track.innerHTML += track.innerHTML;
+
+  /* Reveal on scroll */
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('show'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+
+  /* Animated counters */
+  var counted = false;
+  var cio = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting && !counted) {
+        counted = true;
+        document.querySelectorAll('.count').forEach(function (el) {
+          var target = +el.dataset.target, start = null, dur = 1600;
+          function step(ts) {
+            if (!start) start = ts;
+            var p = Math.min((ts - start) / dur, 1);
+            el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
+            if (p < 1) requestAnimationFrame(step);
+          }
+          reduceMotion ? el.textContent = target : requestAnimationFrame(step);
+        });
+        cio.disconnect();
+      }
+    });
+  }, { threshold: 0.4 });
+  var statsPanel = document.querySelector('.stats-panel');
+  if (statsPanel) cio.observe(statsPanel);
+
+  /* Story: split into words for scroll-lit reveal */
+  var statement = document.getElementById('statement');
+  var words = [];
+  if (statement) {
+    var html = '';
+    statement.childNodes.forEach(function (node) {
+      var isHl = node.nodeName === 'EM';
+      var text = node.textContent;
+      text.split(/\s+/).forEach(function (w) {
+        if (w) html += '<span class="w' + (isHl ? ' hl' : '') + '">' + w + '</span> ';
+      });
+    });
+    statement.innerHTML = html;
+    words = statement.querySelectorAll('.w');
+  }
+  function revealWords() {
+    if (!words.length) return;
+    var r = statement.getBoundingClientRect();
+    var vh = window.innerHeight;
+    var total = (r.height + vh * 0.45);
+    var passed = (vh * 0.85 - r.top);
+    var p = Math.max(0, Math.min(1, passed / total));
+    var lit = Math.floor(p * words.length);
+    for (var i = 0; i < words.length; i++) {
+      words[i].classList.toggle('lit', i < lit);
+    }
+  }
+  if (reduceMotion) { document.querySelectorAll('#statement .w').forEach(function (w) { w.classList.add('lit'); }); }
+
+  /* Services: floating image preview follows cursor (desktop) */
+  var svcImg = document.getElementById('svcImg');
+  var svcImgs = svcImg ? svcImg.querySelectorAll('img') : [];
+  var fine = window.matchMedia('(pointer: fine)').matches;
+  if (svcImg && fine && !reduceMotion) {
+    var tx = 0, ty = 0, cx = 0, cy = 0, rafId = null;
+    function loop() {
+      cx += (tx - cx) * 0.12;
+      cy += (ty - cy) * 0.12;
+      svcImg.style.left = (cx - 150) + 'px';
+      svcImg.style.top = (cy - 190) + 'px';
+      rafId = requestAnimationFrame(loop);
+    }
+    document.querySelectorAll('.svc').forEach(function (row) {
+      row.addEventListener('mouseenter', function () {
+        var idx = +row.dataset.img;
+        svcImgs.forEach(function (im, i) { im.classList.toggle('active', i === idx); });
+        svcImg.classList.add('show');
+        if (!rafId) loop();
+      });
+      row.addEventListener('mouseleave', function () {
+        svcImg.classList.remove('show');
+      });
+      row.addEventListener('click', function () {
+        document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+    document.addEventListener('mousemove', function (e) { tx = e.clientX; ty = e.clientY; });
+  } else {
+    document.querySelectorAll('.svc').forEach(function (row) {
+      row.addEventListener('click', function () {
+        document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+  }
+
+  /* Why cards: cursor-tracked glow */
+  document.querySelectorAll('.why-card').forEach(function (card) {
+    card.addEventListener('mousemove', function (e) {
+      var r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+      card.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
+    });
+  });
+
+  onScroll();
+})();
+</script>
+
+</body>
+</html>
